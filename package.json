@@ -1,6 +1,6 @@
 {
 	"name": "revirtualize",
-	"description": "Headless virtualization library for React",
+	"description": "Tiny, framework-agnostic & headless list virtualization library",
 	"version": "0.0.0",
 	"author": "StyleShit",
 	"license": "MIT",
