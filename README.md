@@ -11,6 +11,8 @@ The API is pretty similar to [TanStack Virtual](https://tanstack.com/virtual/lat
 the total number of items, and a function that estimates the size of each item, and get a list of items that should be rendered
 based on the current scroll position.
 
+### Basic Example with React
+
 Since the Core library contains a low-level API with the bare-bones logic to virtualize a list, you shouldn't use it directly
 unless you're a library author. Instead, use an adapter for your framework of choice. Currently, there is only an adapter for
 React:
@@ -71,6 +73,8 @@ export default function App() {
 }
 ```
 
+### Estimating Item Size
+
 The `estimateItemSize` function can accept an argument that represents the index of the item, which will allow you to
 have different sizes for different items. For example, you can have a list of items where even items have a height of `40`
 and odd items have a height of `80`:
@@ -82,6 +86,8 @@ const { virtualItems, totalSize } = useVirtualize({
   count: items.length,
 });
 ```
+
+### Setting a Threshold
 
 You can also pass a `threshold` option to `useVirtualize` to specify how many items should be rendered before and after
 the visible area. This can be useful if you want to preload some items before they become visible (the default is `5`):
