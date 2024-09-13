@@ -6,6 +6,7 @@ export type CreateVirtualizerOptions = {
 	count: number;
 	getElement: GetElement;
 	estimateItemSize: EstimateItemSize;
+	threshold?: number;
 };
 
 export function createVirtualizer(options: CreateVirtualizerOptions) {
@@ -35,6 +36,7 @@ export function createVirtualizer(options: CreateVirtualizerOptions) {
 		return getItemsInViewport({
 			items,
 			getElement: options.getElement,
+			threshold: options.threshold,
 		});
 	};
 

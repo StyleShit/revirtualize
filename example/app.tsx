@@ -12,6 +12,7 @@ export default function App() {
 		getElement: () => ref.current,
 		estimateItemSize: () => 40,
 		count: items.length,
+		threshold: 10,
 	});
 
 	return (
