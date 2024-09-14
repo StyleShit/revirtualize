@@ -26,10 +26,9 @@ export function getItemsInViewport({
 	for (let i = 0; i < items.length; i++) {
 		const { start, end } = items[i] as VirtualItem;
 
-		const isStartingInViewport =
-			start >= scroll && start <= scroll + height;
+		const isStartingInViewport = start >= scroll && start < scroll + height;
 
-		const isEndingInViewport = end >= scroll && end <= scroll + height;
+		const isEndingInViewport = end > scroll && end <= scroll + height;
 
 		const isInViewport = isStartingInViewport || isEndingInViewport;
 
