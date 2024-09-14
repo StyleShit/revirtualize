@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useVirtualize } from '../use-virtualize';
+import { useVirtualize } from '../';
 
 describe('useVirtualize', () => {
 	it('should return the total size of the list with fixed height', () => {
