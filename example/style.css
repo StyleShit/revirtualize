@@ -24,6 +24,7 @@ h1 {
 	justify-content: space-between;
 	gap: 15px;
 	width: 300px;
+	margin-bottom: 20px;
 }
 
 label {
@@ -36,7 +37,16 @@ label {
 input {
 	width: 100%;
 	padding: 10px;
-	margin-bottom: 20px;
 	border: 2px solid #fff;
 	border-radius: 5px;
+}
+
+input[type='checkbox'] {
+	margin-top: 15px;
+}
+
+.list {
+	height: 500px;
+	width: 300px;
+	overflow: auto;
 }

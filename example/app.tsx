@@ -1,26 +1,16 @@
-import { useMemo, useRef, useState } from 'react';
-import { useVirtualize } from '../src/react';
+import { useMemo, useState } from 'react';
+import { Virtualized } from './components/virtualized';
+import { NotVirtualized } from './components/not-virtualized';
 
 export default function App() {
-	const ref = useRef<HTMLDivElement>(null);
-
-	const [count, setCount] = useState(100000);
+	const [count, setCount] = useState(1000);
 	const [threshold, setThreshold] = useState(6);
+	const [isVirtualized, setIsVirtualized] = useState(true);
 
 	const items = useMemo(
-		() =>
-			Array(count)
-				.fill(null)
-				.map(() => Math.random()),
+		() => Array(count).fill(null).map(randomString),
 		[count],
 	);
-
-	const { virtualItems, totalSize } = useVirtualize({
-		getElement: () => ref.current,
-		estimateItemSize: () => 40,
-		count: items.length,
-		threshold,
-	});
 
 	return (
 		<>
@@ -50,36 +40,33 @@ export default function App() {
 						}}
 					/>
 				</label>
+
+				<label htmlFor="virtualize">
+					Virtualize:
+					<input
+						type="checkbox"
+						id="virtualize"
+						checked={isVirtualized}
+						onChange={(e) => {
+							setIsVirtualized(e.target.checked);
+						}}
+					/>
+				</label>
 			</div>
 
-			<div
-				ref={ref}
-				style={{ height: '500px', width: '300px', overflow: 'auto' }}
-			>
-				<div
-					style={{
-						height: `${String(totalSize)}px`,
-						width: '100%',
-						position: 'relative',
-					}}
-				>
-					{virtualItems.map(({ index, start, size }) => (
-						<div
-							key={index}
-							style={{
-								position: 'absolute',
-								top: 0,
-								left: 0,
-								width: '100%',
-								height: `${String(size)}px`,
-								transform: `translateY(${String(start)}px)`,
-							}}
-						>
-							Row {index} - {items[index]}
-						</div>
-					))}
-				</div>
-			</div>
+			{isVirtualized ? (
+				<Virtualized
+					items={items}
+					itemSize={40}
+					threshold={threshold}
+				/>
+			) : (
+				<NotVirtualized items={items} itemSize={40} />
+			)}
 		</>
 	);
+}
+
+function randomString() {
+	return Math.random().toString(16).slice(2);
 }
