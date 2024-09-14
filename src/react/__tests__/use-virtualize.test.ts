@@ -31,6 +31,20 @@ describe('useVirtualize', () => {
 		expect(result.current.totalSize).toBe(6000);
 	});
 
+	it('should return empty virtual items when there is no element', () => {
+		// Act.
+		const { result } = renderHook(() =>
+			useVirtualize({
+				count: 100,
+				estimateItemSize: () => 40,
+				getElement: () => null,
+			}),
+		);
+
+		// Assert.
+		expect(result.current.virtualItems).toEqual([]);
+	});
+
 	it('should return the virtual items with default threshold when the element is scrolled to top', () => {
 		// Arrange.
 		const element = createMockElement({
