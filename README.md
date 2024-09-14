@@ -2,6 +2,12 @@
 
 Tiny, framework-agnostic & headless list virtualization library.
 
+## Live Demo
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/33e593ad-2376-4c7c-a9f5-841c6710c819/deploy-status)](https://revirtualize.netlify.app/)
+
+[revirtualize.netlify.app](https://revirtualize.netlify.app/)
+
 ## Usage
 
 Revirtualize is a library that allows you to render virtualized lists in a framework agnostic way. It is designed to be
