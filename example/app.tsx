@@ -1,23 +1,56 @@
-import { useRef } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useVirtualize } from '../src/react';
-
-const items = Array(100000)
-	.fill(null)
-	.map(() => Math.random());
 
 export default function App() {
 	const ref = useRef<HTMLDivElement>(null);
+
+	const [count, setCount] = useState(100000);
+	const [threshold, setThreshold] = useState(6);
+
+	const items = useMemo(
+		() =>
+			Array(count)
+				.fill(null)
+				.map(() => Math.random()),
+		[count],
+	);
 
 	const { virtualItems, totalSize } = useVirtualize({
 		getElement: () => ref.current,
 		estimateItemSize: () => 40,
 		count: items.length,
-		threshold: 6,
+		threshold,
 	});
 
 	return (
 		<>
 			<h1>Revirtualize</h1>
+
+			<div className="settings">
+				<label htmlFor="count">
+					Count:
+					<input
+						type="number"
+						id="count"
+						value={count}
+						onChange={(e) => {
+							setCount(e.target.valueAsNumber);
+						}}
+					/>
+				</label>
+
+				<label htmlFor="threshold">
+					Threshold:
+					<input
+						type="number"
+						id="threshold"
+						value={threshold}
+						onChange={(e) => {
+							setThreshold(e.target.valueAsNumber);
+						}}
+					/>
+				</label>
+			</div>
 
 			<div
 				ref={ref}

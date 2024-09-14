@@ -288,6 +288,35 @@ describe('useVirtualize', () => {
 			{ index: 4, start: 200, end: 250, size: 50 },
 		]);
 	});
+
+	it('should be reactive', () => {
+		// Arrange.
+		const element = createMockElement({
+			height: 100,
+			scrollTop: 100,
+		});
+
+		// Act.
+		const { result, rerender } = renderHook(
+			({ count, threshold }) =>
+				useVirtualize({
+					count,
+					threshold,
+					estimateItemSize: () => 50,
+					getElement: () => element,
+				}),
+			{ initialProps: { count: 10, threshold: 0 } },
+		);
+
+		// Assert.
+		expect(result.current.virtualItems).toHaveLength(2);
+
+		// Act.
+		rerender({ count: 5, threshold: 2 });
+
+		// Assert.
+		expect(result.current.virtualItems).toHaveLength(5);
+	});
 });
 
 function createMockElement({
