@@ -1,5 +1,11 @@
 # revirtualize
 
+## 0.0.2
+
+### Patch Changes
+
+- 8d19205: [React] Support reactive count and threshold (#4)
+
 ## 0.0.1
 
 ### Patch Changes

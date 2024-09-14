@@ -1,7 +1,7 @@
 {
 	"name": "revirtualize",
 	"description": "Tiny, framework-agnostic & headless list virtualization library",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"author": "StyleShit",
 	"license": "MIT",
 	"repository": {
